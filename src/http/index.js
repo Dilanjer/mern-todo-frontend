@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_URL = 'https://mern-todo-backend-dilanjer.vercel.app/api';
+export const API_URL = 'http://mern-todo-backend-bice.vercel.app/api';
 
 const $api = axios.create({
   withCredentials: true,
