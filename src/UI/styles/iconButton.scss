@@ -1,0 +1,13 @@
+.btn-icon {
+  @apply relative flex min-h-2.3 min-w-2.3 items-center justify-center rounded-sm border border-transparent p-1 transition-colors;
+
+  @apply text-skin-text-primary  hover:bg-skin-interactive-weak-hover;
+
+  &__border {
+    @apply border-skin-border-primary;
+  }
+
+  &__active {
+    @apply bg-skin-interactive-weak-active;
+  }
+}

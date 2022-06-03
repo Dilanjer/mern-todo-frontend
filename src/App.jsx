@@ -2,13 +2,18 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 
-import { Notification, NotificationProvider } from 'components/Notification';
 import { checkAuth } from 'store/slices/UserSlice';
-import AuthPage from './pages/AuthPage';
-import MainPage from './pages/MainPage';
+
+import { LoginPage } from 'pages/LoginPage';
+import { RegistrationPage } from 'pages/RegitrationPage';
+import { NotificationProvider } from 'UI/Notification';
+import SettingsPage from 'pages/SettingsPage';
+import PagePreloader from 'components/PagePreloader';
+
+const MainPage = React.lazy(() => import('./pages/MainPage'));
 
 const App = () => {
-  const { user, notification } = useSelector((state) => state);
+  const { user } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -18,34 +23,34 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className='text-gray-900 dark'>
-      {notification.notificationsArray.length !== 0 && (
-        <NotificationProvider>
-          {notification.notificationsArray.map((item) => (
-            <Notification
-              key={item.id}
-              id={item.id}
-              type={item.type}
-              message={item.message}
-              closeDelay={3000}
-            />
-          ))}
-        </NotificationProvider>
-      )}
-
+    <>
+      <NotificationProvider />
       <Routes>
         {user.isAuth ? (
           <>
+            <Route path='main/*' element={<MainPage />} />
+            <Route
+              path='main/:listId'
+              element={
+                <React.Suspense fallback={<PagePreloader />}>
+                  <MainPage />
+                </React.Suspense>
+              }
+            />
+            <Route path='main/settings' element={<SettingsPage />} />
+            <Route index element={<Navigate to={'/main'} replace />} />
             <Route path='*' element={<Navigate to={'/main'} replace />} />
-            <Route path='/main/*' element={<MainPage />} />
           </>
         ) : (
           <>
-            <Route path='/*' element={<AuthPage />} />
+            <Route path='login' element={<LoginPage />} />
+            <Route path='registration' element={<RegistrationPage />} />
+            <Route index element={<Navigate to={'/login'} replace />} />
+            <Route path='*' element={<Navigate to={'/login'} replace />} />
           </>
         )}
       </Routes>
-    </div>
+    </>
   );
 };
 

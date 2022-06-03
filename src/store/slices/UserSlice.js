@@ -1,9 +1,9 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { addNotification } from './NotificationSlice';
 import AuthService from 'services/AuthService';
 import { API_URL } from 'http';
-import { addNotification } from './NotificationSlice';
 
 const initialState = {
   isAuth: false,
@@ -98,14 +98,17 @@ const UserSlice = createSlice({
     [registration.pending]: (state) => {
       state.status = 'pending';
       state.errors = null;
+      state.loading = true;
       console.log('registration pending');
     },
     [registration.fulfilled]: (state, action) => {
       state.status = 'success';
+      state.loading = false;
       console.log('registration success', action);
     },
     [registration.rejected]: (state, action) => {
       state.errors = action.payload;
+      state.loading = false;
       console.log('registration error', action);
     },
 
@@ -113,16 +116,19 @@ const UserSlice = createSlice({
     [login.pending]: (state) => {
       state.status = 'pending';
       state.errors = null;
+      state.loading = true;
       console.log('login pending');
     },
     [login.fulfilled]: (state, action) => {
       console.log('login success', action);
       state.status = 'success';
       state.isAuth = true;
+      state.loading = false;
       state.currentUser = action.payload.user;
     },
     [login.rejected]: (state, action) => {
       state.errors = action.payload;
+      state.loading = false;
       console.log('login errors', action);
     },
 
@@ -130,16 +136,19 @@ const UserSlice = createSlice({
     [logout.pending]: (state) => {
       state.status = 'pending';
       state.errors = null;
+      state.loading = true;
       console.log('logout pending');
     },
     [logout.fulfilled]: (state, action) => {
       console.log('logout success', action);
       state.status = '';
       state.isAuth = false;
+      state.loading = false;
       state.currentUser = {};
     },
     [logout.rejected]: (state, action) => {
       state.errors = action.payload;
+      state.loading = false;
       console.log('logout errors', action);
     },
 
@@ -147,17 +156,20 @@ const UserSlice = createSlice({
     [checkAuth.pending]: (state) => {
       state.status = 'pending';
       state.errors = null;
+      state.loading = true;
       console.log('checkAuth pending');
     },
     [checkAuth.fulfilled]: (state, action) => {
       console.log('checkAuth success', action);
       state.status = 'success';
       state.isAuth = true;
+      state.loading = false;
       state.currentUser = action.payload.data.user;
     },
     [checkAuth.rejected]: (state, action) => {
       console.log('checkAuth errors', action?.payload);
       state.errors = action?.payload?.data;
+      state.loading = false;
       if (action?.payload?.status === 401) {
         window.localStorage.removeItem('token');
       }

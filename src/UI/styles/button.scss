@@ -1,0 +1,35 @@
+.btn {
+  @apply flex cursor-pointer select-none items-center rounded-sm border border-transparent px-3 py-1.5 text-sm transition-colors ease-in-out;
+
+  &:disabled {
+    @apply cursor-default;
+  }
+}
+
+.btn-base {
+  @apply text-skin-text-primary hover:bg-skin-interactive-weak-hover;
+
+  &__active {
+    @apply bg-skin-interactive-weak-active;
+  }
+
+  &:disabled {
+    @apply text-skin-text-disabled hover:bg-transparent;
+  }
+}
+
+.btn-outlined {
+  @apply border-skin-primary text-skin-primary hover:shadow-[inset_0px_0px_1px_1px];
+
+  &:disabled {
+    @apply border-skin-border-disabled text-skin-text-disabled hover:shadow-none;
+  }
+}
+
+.btn-contained {
+  @apply bg-skin-interactive-primary text-skin-text-contrast shadow-md hover:bg-skin-interactive-primary-hover active:bg-skin-interactive-primary-active;
+
+  &:disabled {
+    @apply bg-skin-background-disabled text-skin-text-disabled;
+  }
+}

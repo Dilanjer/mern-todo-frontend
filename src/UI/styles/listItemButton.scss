@@ -1,0 +1,13 @@
+.list-item-btn {
+  // base styles
+  @apply flex cursor-pointer select-none items-center transition-colors ease-in-out;
+
+  @apply hover:bg-skin-interactive-weak-hover;
+
+  &__active {
+    // bese styles
+    @apply border-l-4 border-transparent font-semibold;
+
+    @apply border-skin-primary bg-skin-interactive-weak-active;
+  }
+}

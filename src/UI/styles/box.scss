@@ -1,0 +1,14 @@
+.box {
+  // base styles
+  @apply relative border border-transparent;
+
+  @apply bg-skin-background-secondary;
+
+  &__border {
+    @apply border-skin-border-primary;
+  }
+
+  &__shadow {
+    @apply shadow-md drop-shadow-2xl;
+  }
+}

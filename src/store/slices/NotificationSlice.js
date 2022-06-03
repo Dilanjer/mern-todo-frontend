@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
@@ -14,7 +14,6 @@ const NotificationSlice = createSlice({
     },
     addNotification(state, action) {
       const { type, message } = action.payload;
-      console.log(action.payload);
       state.notificationsArray.push({
         type,
         message,
@@ -22,7 +21,6 @@ const NotificationSlice = createSlice({
       });
     },
     removeNotification(state, action) {
-      console.log(action.payload);
       state.notificationsArray = state.notificationsArray.filter(
         (item) => item.id !== action.payload
       );

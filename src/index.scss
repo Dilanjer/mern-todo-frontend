@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #6366f1;
+    --primary-contrast: #ffffff;
+
+    --text-primary: #1e293b;
+    --text-contrast: #ffffff;
+    --text-disabled: #94a3b8;
+
+    --border-primary: #cbd5e1;
+    --border-disabled: #94a3b8;
+
+    --background-primary: #ffffff;
+    --background-secondary: #f1f5f9;
+    --background-disabled: #e2e8f0;
+
+    --interactive-weak: #eaecef;
+    --interactive-weak-hover: #eaecef;
+    --interactive-weak-active: #eaecef;
+
+    --interactive-primary: #6366f1;
+    --interactive-primary-hover: #4f46e5;
+    --interactive-primary-active: #4338ca;
+  }
+
+  .dark {
+    --primary: #6366f1;
+    --primary-contrast: #ffffff;
+
+    --text-primary: #ffffff;
+    --text-contrast: #ffffff;
+    --text-disabled: #64748b;
+
+    --border-primary: #334155;
+    --border-disabled: #475569;
+
+    --background-primary: #0f172a;
+    --background-secondary: #1e293b;
+    --background-disabled: #1e293b;
+
+    --interactive-weak: #eaecef;
+    --interactive-weak-hover: rgba(234, 236, 239, 0.1);
+    --interactive-weak-active: rgba(234, 236, 239, 0.1);
+
+    --interactive-primary: #6366f1;
+    --interactive-primary-hover: #4f46e5;
+    --interactive-primary-active: #4338ca;
+  }
+
+  .monokai {
+    --primary: #f43f5e;
+    --primary-contrast: #ffffff;
+
+    --text-primary: #ffffff;
+    --text-contrast: #ffffff;
+
+    --text-disabled: #64748b;
+    --border-primary: #334155;
+    --border-disabled: #475569;
+
+    --background-primary: #0f172a;
+    --background-secondary: #1e293b;
+    --background-disabled: #1e293b;
+
+    --interactive-weak: #eaecef;
+    --interactive-weak-hover: rgba(234, 236, 239, 0.1);
+    --interactive-weak-active: rgba(234, 236, 239, 0.2);
+
+    --interactive-primary: #f43f5e;
+    --interactive-primary-hover: #e11d48;
+    --interactive-primary-active: #be123c;
+  }
+}
+
+*::selection {
+  @apply bg-skin-primary text-white;
+}
+
+html {
+  @apply overflow-hidden;
+}
+body {
+  @apply bg-skin-background-primary;
+}
